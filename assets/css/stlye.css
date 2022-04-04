@@ -1,0 +1,134 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+:root {
+    --wrong: 0;
+    --correct: 0; 
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(5, 48, 139);
+    }
+
+.container {
+    width: 800px;
+    max-width: 80%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px; 
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;   
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(1, auto);
+    gap: 10px;
+    margin: 20px 0;
+}
+.btn {
+    background-color: rgb(73, 129, 250);
+    border: 4px solid rgb(51, 92, 180);
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: white;
+    outline: none;
+}
+.btn:hover {
+    border-color: black;
+}
+.btn.correct {
+    background-color: green;
+    color: black;
+}
+.btn.wrong {
+    background-color: red;
+}
+
+.start-btn, .next-btn {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* main {
+    width: 80%;
+    height: 80%;
+    border-style: dashed black 5px;
+    background-color: rgb(94, 23, 160);
+} */
+
+/* .middle {
+    background-color: blueviolet;
+    text-align: center;
+    color: rgb(188, 132, 241);
+}
+
+#start {
+    padding: 10px
+}
+
+header {
+    height: 50px;
+    background-color: rgb(38, 187, 187);
+} */
+/* .blueBg {
+    background-color: rgb(38, 187, 187);
+} */
+/* 
+header h2 {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+button {
+    text-align: left;
+    font-size: medium;  
+    padding: 5px 10px 5px 10px;
+} */
