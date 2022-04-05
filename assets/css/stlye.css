@@ -3,11 +3,6 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-:root {
-    --wrong: 0;
-    --correct: 0; 
-}
-
 body {
     padding: 0;
     margin: 0;
@@ -69,7 +64,13 @@ body {
     display: none;
 }
 
-
+header {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+}
 
 
 

@@ -3,6 +3,11 @@ var nextButton = document.getElementById('next-btn')
 var questionContainerEl = document.getElementById('questions-container')
 var questionElement = document.getElementById('questions')
 var answerButtonElement = document.getElementById('answer-buttons')
+var timePara = document.querySelector('.timer')
+var wins = localStorage.getItem("wins") || 0;
+var losses = localStorage.getItem("losses") || 0;
+// winsSpan.textContent = wins;
+// lossesSpan.textContent = losses;
 
 var shuffledQuestions, currentQuestionsIndex
 
@@ -13,6 +18,21 @@ nextButton.addEventListener('click', () => {
     currentQuestionsIndex++
     setNextQuestion()
 })
+
+// var timer;
+// var timeLeft =100;
+
+// function startTimer() {
+//     timer = setInterval(function(){
+//         console.log(timeLeft);
+//         timeLeft--;
+//         timePara.textContent=timeLeft
+//         if(timeLeft<=0){
+//                 clearInterval(timer);
+//                 console.log("Lost!")
+//         }
+//     },1000)
+// }
 
 
 function startGame() {
@@ -25,6 +45,7 @@ function startGame() {
     console.log("chosenquestions:", shuffledQuestions)
 
     setNextQuestion()
+    startTimer();
 }
 
 function setNextQuestion(){
@@ -36,12 +57,12 @@ function showQuestions(question) {
     questionElement.innerText = question.question
     question.answers.forEach(answer => {
         var button = document.createElement("button")
-        button.innerText = answer.text
+        button.innerText = answer
         button.setAttribute("data-status", answer.correct)
         button.classList.add("btn")
-        if (answer.correct) {
-            button.dataset.correct = answer.correct
-        }
+        // if (answer.correct) {
+        //     button.dataset.correct = answer.correct
+        // }
         button.addEventListener("click", selectAnswer)
         answerButtonElement.appendChild(button)
     })
@@ -58,17 +79,8 @@ function resetState() {
 function selectAnswer(event){
     var element = event.target  
     if(element.matches(".btn")){
-    var correct = element.dataset.correct
-    // console.log(correct)
-    // console.log(questions[currentQuestionsIndex].answers[correctAnswer])
-    // if(correct == questions[currentQuestionsIndex].correct){}
+    console.log(event.target.textContent)
     }
-
-    
-    // setStatusClass(document.body.correct, correct)
-    // Array.from(answerButtonElement.children).forEach(button => {
-    //     setStatusClass(button, button.dataset.correct)
-    // })
         if(shuffledQuestions.length > currentQuestionsIndex +1) {
     nextButton.classList.remove('hide')
     }else {
@@ -76,87 +88,57 @@ function selectAnswer(event){
         startButton.classList.remove('hide')
     }
 }
-
-// function setStatusClass(element, correct) {
-//     clearStatusClass(element)
-//     if (correct) {
-//         element.classList.add('correct')
-//     }else {
-//         element.classList.add('wrong')
-//     }
+// function checkWin(answer) {
+//    var corrrectAnswer = event.target.textContent 
+//     if (answers === correctAnswer){
+//                                             //HELP!!
+//     // isPlaying = false;
+//     //clearInterval(timer);
+//     return true;
+//   } else {
+//     return false;
+//   }
 // }
 
-// function clearStatusClass(element) {
-//   element.classList.remove('correct')
-//   element.classList.remove('wrong')
-// }
+
+// console.log(checkWin)
 
 const questions = [
     {
         question: "Is Joe the best UW Boot Camp Instructor?",
-        answers: [
-            { text: 'Yes', correct: true},
-            { text: 'No', correct: false},
-            { text: 'Maybe', correct: false},
-            { text: 'Who?', correct: false}
-        ],
-        correctAnswer: 0
+        answers: [ 'Yes', 'No', 'Maybe', 'Who?' ],
+        correctAnswer: 'Yes'
     },
     {
         question: "What does the acronym 'HTML' stand for??",
-        answers: [
-            { text: 'HyperText Markup Language', correct: true},
-            { text: 'Markup Language HyperText', correct: false},
-            { text: 'Language HyperText Markup', correct: false},
-            { text: 'Yes?', correct: false}
-        ],
-        correctAnswer: 0
+        answers: ['HyperText Markup Language', 'Markup Language HyperText', 'Language HyperText Markup', 'TextHyper Language Markup'],
+        correctAnswer: 'Yes?'
     },
     {
         question: "What time does the UW Boot Camp start?",
-        answers: [
-            { text: '10:00am', correct: true},
-            { text: '9:00am', correct: false},
-            { text: '11:00am', correct: false},
-            { text: 'Whenever', correct: false}
-        ],
-        correctAnswer: 0
+        answers: ['10:00am','9:00am', '11:00am', 'Whenever',],
+        correctAnswer: '10:00am'
     },
     {
         question: "When does afternoon office hours usually begin?",
-        answers: [
-            { text: '2:30pm', correct: true},
-            { text: '3:00pm', correct: false},
-            { text: '1:00pm', correct: false},
-            { text: 'What are office hours?', correct: false}
-        ],
-        correctAnswer: 0
+        answers: ['2:30pm','3:00pm', '1:00pm', 'What are office hours?',],
+        correctAnswer: '2:30pm'
     },
     {
         question: "Which TA recently got a new job?",
-        answers: [
-            { text: 'Sam', correct: true},
-            { text: 'Lindsay', correct: false},
-            { text: 'Evan', correct: false},
-            { text: 'TA #4', correct: false}
-        ],
-        correctAnswer: 0
+        answers: ['Sam','Lindsay','Evan','TA #4',],
+        correctAnswer: "Sam"
     },
     {
         question: "Is web development fun?",
-        answers: [
-            { text: 'Yes-ish', correct: true},
-            { text: 'No!', correct: false},
-            { text: 'Getting there', correct: false},
-            { text: 'Help...', correct: false}
-        ],
-        correctAnswer: 0
+        answers: ['Yes-ish','No!','Getting there','Help...',],
+        correctAnswer: 'Yes-ish'
     }
     
 ]
 
-
-//score
+//check (event.target.textContent) string to see if it equals the correctAnswer string (answer ===correctAnswer)
+//score (btn) header that changes in real time.
 
 //timer - in the checkWin function, "clearInenterval(timer);" to stop the clock
 
@@ -165,25 +147,9 @@ const questions = [
 
 
 //if incorrect, subtract time for countdown timer
-createRadioButtonFromArray(itemAnswers[currentQuestion].choices);
+
 
 //Countdown timer setup to lose [timePara]
-var timer;
-var timeLeft =10;
-
-function startTimer() {
-    timer = setInterval(function(){
-        console.log(timeLeft);
-        timeLeft--;
-        timePara.textContent=timeLeft
-        if(timeLeft<=0){
-                clearInterval(timer);
-                console.log("Lost!")
-        }
-    },1000)
-}
-startTimer();
-//in the checkWin function, "clearInenterval(timer);" to stop the clock
 
 //start game function
 
