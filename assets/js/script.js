@@ -19,20 +19,20 @@ nextButton.addEventListener('click', () => {
     setNextQuestion()
 })
 
-// var timer;
-// var timeLeft =100;
+var timer;
+var timeLeft =100;
 
-// function startTimer() {
-//     timer = setInterval(function(){
-//         console.log(timeLeft);
-//         timeLeft--;
-//         timePara.textContent=timeLeft
-//         if(timeLeft<=0){
-//                 clearInterval(timer);
-//                 console.log("Lost!")
-//         }
-//     },1000)
-// }
+function startTimer() {
+    timer = setInterval(function(){
+        console.log(timeLeft);
+        timeLeft--;
+        timePara.textContent=timeLeft
+        if(timeLeft<=0){
+                clearInterval(timer);
+                console.log("Lost!")
+        }
+    },1000)
+}
 
 
 function startGame() {
@@ -52,8 +52,9 @@ function setNextQuestion(){
     resetState()
     showQuestions(shuffledQuestions[currentQuestionsIndex])
 }
-
+var theCorrectAnswer
 function showQuestions(question) {
+    theCorrectAnswer = shuffledQuestions[currentQuestionsIndex].correctAnswer
     questionElement.innerText = question.question
     question.answers.forEach(answer => {
         var button = document.createElement("button")
@@ -77,31 +78,22 @@ function resetState() {
 }
 
 function selectAnswer(event){
-    var element = event.target  
+    var element = event.target 
     if(element.matches(".btn")){
     console.log(event.target.textContent)
+    console.log(theCorrectAnswer)
+        if (event.target.textContent === theCorrectAnswer){          
+        }else {
+            timeLeft -= 10;
+        }
     }
-        if(shuffledQuestions.length > currentQuestionsIndex +1) {
+    if(shuffledQuestions.length > currentQuestionsIndex +1) {
     nextButton.classList.remove('hide')
     }else {
         startButton.innerText = "Restart"
         startButton.classList.remove('hide')
     }
 }
-// function checkWin(answer) {
-//    var corrrectAnswer = event.target.textContent 
-//     if (answers === correctAnswer){
-//                                             //HELP!!
-//     // isPlaying = false;
-//     //clearInterval(timer);
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-
-
-// console.log(checkWin)
 
 const questions = [
     {
@@ -112,7 +104,7 @@ const questions = [
     {
         question: "What does the acronym 'HTML' stand for??",
         answers: ['HyperText Markup Language', 'Markup Language HyperText', 'Language HyperText Markup', 'TextHyper Language Markup'],
-        correctAnswer: 'Yes?'
+        correctAnswer: 'HyperText Markup Language'
     },
     {
         question: "What time does the UW Boot Camp start?",

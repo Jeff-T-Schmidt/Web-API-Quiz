@@ -40,11 +40,11 @@ body {
 .btn:hover {
     border-color: black;
 }
-.btn.correct {
+.correct {
     background-color: green;
     color: black;
 }
-.btn.wrong {
+.wrong {
     background-color: red;
 }
 
@@ -70,6 +70,7 @@ header {
     position: absolute;
     top: 0;
     width: 100vw;
+    color: white;
 }
 
 
