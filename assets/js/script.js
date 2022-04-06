@@ -92,6 +92,7 @@ function selectAnswer(event){
     }else {
         startButton.innerText = "Restart"
         startButton.classList.remove('hide')
+        clearInterval(timer)
     }
 }
 
